@@ -32,7 +32,6 @@ const base = import.meta.env.BASE_URL;
 const normalizedBase = base.replace(/\/$/, '');
 const join = (path: string) => `${normalizedBase}/${path.replace(/^\//, '')}`;
 
-// Hero subtitle: dates or "n. <year>", plus birthplace
 function heroSubtitle(): string | null {
   const { born, died, birthplace } = artist.data;
   if (!born && !died && !birthplace) return null;
@@ -44,8 +43,14 @@ function heroSubtitle(): string | null {
 }
 
 const subtitle = heroSubtitle();
-const heroImage = artist.data.portrait
-  ? join(`images/artists/${artist.data.portrait}`)
+
+// Hero background: first work's first image (chronologically earliest).
+const heroWork = works[0];
+const heroImage = heroWork?.data.images?.[0]
+  ? join(heroWork.data.images[0])
+  : null;
+const heroCaption = heroWork
+  ? `${heroWork.data.title}${heroWork.data.year ? `, ${heroWork.data.year}` : ''}`
   : null;
 ---
 <Base title={artist.data.name}>
@@ -55,19 +60,28 @@ const heroImage = artist.data.portrait
       <h2>{artist.data.name}</h2>
       {subtitle && <div class="hero-subtitle">{subtitle}</div>}
     </div>
+    {heroCaption && (
+      <div class="hero-caption">{heroCaption}</div>
+    )}
   </section>
 
   {artist.data.movement && (
     <div class="bio-meta">{artist.data.movement}</div>
   )}
 
-  <div class="bio">
-    <Content />
+  <div class="bio-layout">
+    {artist.data.portrait && (
+      <aside class="bio-aside">
+        <img class="aside-portrait" src={join(`images/artists/${artist.data.portrait}`)} alt={artist.data.name} />
+        {artist.data.portrait_credit && (
+          <div class="aside-credit">{artist.data.portrait_credit}</div>
+        )}
+      </aside>
+    )}
+    <div class="bio">
+      <Content />
+    </div>
   </div>
-
-  {artist.data.portrait_credit && (
-    <div class="portrait-credit-line">{artist.data.portrait_credit}</div>
-  )}
 
   {artist.data.sources && artist.data.sources.length > 0 && (
     <section class="sources">
