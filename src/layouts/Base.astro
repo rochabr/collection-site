@@ -38,18 +38,16 @@ const currentPath = Astro.url.pathname;
   <body>
     <header>
       <div class="header-row">
-        <div class="header-main">
-          <a href={homePath} class="site-title">
-            <h1>
-              <img src={join('images/logo-wordmark-black.png')} alt={SITE} class="logo" />
-              <span class="visually-hidden">{SITE}</span>
-            </h1>
-          </a>
-          <nav>
-            <a href={homePath}>{s.works}</a>
-            <a href={artistsPath}>{s.artists}</a>
-          </nav>
-        </div>
+        <a href={homePath} class="brand">
+          <h1>
+            <img src={join('images/logo-wordmark-black.png')} alt={SITE} class="logo" />
+            <span class="visually-hidden">{SITE}</span>
+          </h1>
+        </a>
+        <nav class="main-nav">
+          <a href={homePath}>{s.works}</a>
+          <a href={artistsPath}>{s.artists}</a>
+        </nav>
         <nav class="lang-switcher">
           {LOCALES.map((loc) => (
             <a

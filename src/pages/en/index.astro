@@ -21,7 +21,7 @@ const asset = (path: string) => `${normalizedBase}/${path.replace(/^\//, '')}`;
     {works.map((work) => {
       const thumb = work.data.images?.[0];
       return (
-        <a class="card" href={join(`works/${work.id}/`)}>
+        <a class="card work-card" href={join(`works/${work.id}/`)}>
           <div class="thumb">
             {thumb
               ? <img src={asset(thumb)} alt={`${work.data.artist} — ${work.data.title}`} loading="lazy" />
