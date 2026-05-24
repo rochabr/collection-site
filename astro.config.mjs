@@ -4,6 +4,6 @@ import { defineConfig } from 'astro/config';
 // For a project page (default), keep `base: '/collection-site'`.
 // For a user/org page (repo named <user>.github.io), set base: '/'.
 export default defineConfig({
-  site: 'https://YOUR-USERNAME.github.io',
+  site: 'https://rochabr.github.io',
   base: '/collection-site',
 });
