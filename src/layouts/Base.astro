@@ -1,10 +1,13 @@
 ---
 import '../styles/global.css';
 
+const SITE = 'Acervo Rocha';
+
 interface Props {
   title: string;
 }
 const { title } = Astro.props;
+const docTitle = title === SITE ? SITE : `${title} — ${SITE}`;
 const base = import.meta.env.BASE_URL;
 const join = (path: string) =>
   `${base.replace(/\/$/, '')}/${path.replace(/^\//, '')}`;
@@ -14,11 +17,11 @@ const join = (path: string) =>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title}</title>
+    <title>{docTitle}</title>
   </head>
   <body>
     <header>
-      <a href={base}><h1>Collection</h1></a>
+      <a href={base}><h1>{SITE}</h1></a>
       <nav>
         <a href={base}>Works</a>
         <a href={join('artists/')}>Artists</a>

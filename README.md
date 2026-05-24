@@ -1,4 +1,4 @@
-# Collection Site
+# Acervo Rocha
 
 Astro-built static showcase of the collection. Deploys to GitHub Pages on every push to `main`.
 

@@ -10,7 +10,7 @@ const base = import.meta.env.BASE_URL;
 const join = (path: string) =>
   `${base.replace(/\/$/, '')}/${path.replace(/^\//, '')}`;
 ---
-<Base title="Collection">
+<Base title="Acervo Rocha">
   <div class="grid">
     {works.map((work) => {
       const thumb = work.data.images?.[0];
