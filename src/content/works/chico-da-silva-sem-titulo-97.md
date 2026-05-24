@@ -12,4 +12,5 @@ hammer_brl: 3700
 premium_brl: 370
 images:
   - /images/works/chico-da-silva-sem-titulo-97-1.jpeg
+  - /images/works/chico-da-silva-sem-titulo-97-2.jpeg
 ---
