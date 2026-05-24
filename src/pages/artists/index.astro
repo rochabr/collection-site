@@ -19,24 +19,27 @@ const sorted = artists.sort((a, b) =>
 const base = import.meta.env.BASE_URL;
 const join = (path: string) =>
   `${base.replace(/\/$/, '')}/${path.replace(/^\//, '')}`;
+
+const initials = (name: string) =>
+  name.split(' ').filter(Boolean).map(w => w[0]).join('').slice(0, 2);
 ---
 <Base title="Artists">
-  <ul class="artist-list">
+  <div class="grid">
     {sorted.map((artist) => {
       const count = worksByArtist.get(artist.id) ?? 0;
       const dates = [artist.data.born, artist.data.died].filter(Boolean).join(' – ');
       return (
-        <li>
-          <a href={join(`artists/${artist.id}/`)}>
+        <a class="card" href={join(`artists/${artist.id}/`)}>
+          <div class="thumb">
             {artist.data.portrait
-              ? <img class="thumb-mini" src={join(`images/artists/${artist.data.portrait}`)} alt="" loading="lazy" />
-              : <span class="thumb-mini placeholder" aria-hidden="true">{artist.data.name.split(' ').map(w => w[0]).join('').slice(0, 2)}</span>}
-            <span class="name">{artist.data.name}</span>
-            {dates && <span class="dates"> ({dates})</span>}
-            <span class="count">{count} {count === 1 ? 'work' : 'works'}</span>
-          </a>
-        </li>
+              ? <img src={join(`images/artists/${artist.data.portrait}`)} alt={`Portrait of ${artist.data.name}`} loading="lazy" />
+              : <span class="initials">{initials(artist.data.name)}</span>}
+          </div>
+          <div class="artist">{artist.data.name}</div>
+          {dates && <div class="title">{dates}</div>}
+          <div class="count">{count} {count === 1 ? 'work' : 'works'}</div>
+        </a>
       );
     })}
-  </ul>
+  </div>
 </Base>

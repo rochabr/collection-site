@@ -1,5 +1,5 @@
 ---
-title: Sem Título
+title: Lavadeiras
 artist: Benedito José Tobias
 medium: Aquarela sobre papel
 dimensions: 31 × 32 cm

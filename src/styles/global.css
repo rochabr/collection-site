@@ -191,42 +191,16 @@ a.back:hover { color: var(--fg); }
 }
 .work-page h2 a:hover { border-bottom-style: solid; }
 
-.artist-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  max-width: 720px;
-}
-.artist-list li { border-bottom: 1px solid var(--line); }
-.artist-list a {
-  display: flex;
-  align-items: center;
-  gap: 0.85rem;
-  padding: 0.6rem 0;
-  text-decoration: none;
-  color: inherit;
-}
-.artist-list .thumb-mini {
-  width: 44px;
-  height: 44px;
-  object-fit: cover;
-  background: #ece9e2;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--muted);
-  font-size: 0.75rem;
-  font-weight: 500;
+.card .thumb .initials {
+  font-size: 2.5rem;
+  font-weight: 300;
   letter-spacing: 0.05em;
+  color: var(--muted);
 }
-.artist-list a:hover .name { text-decoration: underline; }
-.artist-list .name { font-weight: 500; }
-.artist-list .dates { color: var(--muted); font-size: 0.9rem; }
-.artist-list .count {
+.card .count {
   color: var(--muted);
   font-size: 0.85rem;
-  margin-left: auto;
+  margin-top: 0.25rem;
 }
 
 .artist-header {
