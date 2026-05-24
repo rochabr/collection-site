@@ -1,10 +1,10 @@
 ---
 import { getCollection, render } from 'astro:content';
-import Base from '../../layouts/Base.astro';
-import { slugify } from '../../lib/slugify';
-import { t, acquisitionLine, type Locale } from '../../lib/i18n';
+import Base from '../../../layouts/Base.astro';
+import { slugify } from '../../../lib/slugify';
+import { t, acquisitionLine, type Locale } from '../../../lib/i18n';
 
-const locale: Locale = 'pt';
+const locale: Locale = 'en';
 
 export async function getStaticPaths() {
   const works = await getCollection('works');
@@ -20,7 +20,9 @@ const s = t(locale);
 
 const base = import.meta.env.BASE_URL;
 const normalizedBase = base.replace(/\/$/, '');
-const join = (path: string) => `${normalizedBase}/${path.replace(/^\//, '')}`;
+const localeBase = `${normalizedBase}/en`;
+const join = (path: string) => `${localeBase}/${path.replace(/^\//, '')}`;
+const asset = (path: string) => `${normalizedBase}/${path.replace(/^\//, '')}`;
 
 const images = work.data.images ?? [];
 const primary = images[0];
@@ -28,17 +30,17 @@ const primary = images[0];
 const acquisition = acquisitionLine(work.data.auction_house, work.data.auction_date, locale);
 ---
 <Base title={`${work.data.artist} — ${work.data.title}`}>
-  <a class="back" href={normalizedBase + '/'}>{s.back_collection}</a>
+  <a class="back" href={localeBase + '/'}>{s.back_collection}</a>
   <div class="work-page">
     <div class="image-col">
       {primary
-        ? <img id="primary-image" src={join(primary)} alt={`${work.data.artist} — ${work.data.title}`} />
+        ? <img id="primary-image" src={asset(primary)} alt={`${work.data.artist} — ${work.data.title}`} />
         : <div class="placeholder">{s.no_image}</div>}
       {images.length > 1 && (
         <div class="extras">
           {images.map((src, i) => (
-            <button type="button" class:list={["thumb-btn", { active: i === 0 }]} data-src={join(src)} aria-label={`${i + 1} / ${images.length}`}>
-              <img src={join(src)} alt="" loading="lazy" />
+            <button type="button" class:list={["thumb-btn", { active: i === 0 }]} data-src={asset(src)} aria-label={`${i + 1} / ${images.length}`}>
+              <img src={asset(src)} alt="" loading="lazy" />
             </button>
           ))}
         </div>

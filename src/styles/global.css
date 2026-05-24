@@ -26,6 +26,12 @@ header h1 {
   font-size: 1.5rem;
   letter-spacing: 0.05em;
 }
+header .header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
 header nav {
   display: flex;
   gap: 1.5rem;
@@ -37,6 +43,16 @@ header nav a {
   text-decoration: none;
 }
 header nav a:hover { color: var(--fg); }
+header .lang-switcher {
+  margin-top: 0;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+}
+header .lang-switcher a.active {
+  color: var(--fg);
+  font-weight: 500;
+}
 
 main {
   max-width: 1200px;

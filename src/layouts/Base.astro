@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { t, DEFAULT_LOCALE, LOCALES, type Locale, localizedPath } from '../lib/i18n';
 
 const SITE = 'Acervo Rocha';
 
@@ -8,12 +9,23 @@ interface Props {
 }
 const { title } = Astro.props;
 const docTitle = title === SITE ? SITE : `${title} — ${SITE}`;
+
+const locale = (Astro.currentLocale ?? DEFAULT_LOCALE) as Locale;
+const s = t(locale);
+
 const base = import.meta.env.BASE_URL;
-const join = (path: string) =>
-  `${base.replace(/\/$/, '')}/${path.replace(/^\//, '')}`;
+const normalizedBase = base.replace(/\/$/, '');
+const join = (path: string) => `${normalizedBase}/${path.replace(/^\//, '')}`;
+
+const homePath = locale === DEFAULT_LOCALE ? `${normalizedBase}/` : `${normalizedBase}/${locale}/`;
+const artistsPath = locale === DEFAULT_LOCALE
+  ? join('artists/')
+  : `${normalizedBase}/${locale}/artists/`;
+
+const currentPath = Astro.url.pathname;
 ---
 <!doctype html>
-<html lang="en">
+<html lang={locale === 'pt' ? 'pt-BR' : 'en'}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -21,11 +33,26 @@ const join = (path: string) =>
   </head>
   <body>
     <header>
-      <a href={base}><h1>{SITE}</h1></a>
-      <nav>
-        <a href={base}>Works</a>
-        <a href={join('artists/')}>Artists</a>
-      </nav>
+      <div class="header-row">
+        <div class="header-main">
+          <a href={homePath} class="site-title"><h1>{SITE}</h1></a>
+          <nav>
+            <a href={homePath}>{s.works}</a>
+            <a href={artistsPath}>{s.artists}</a>
+          </nav>
+        </div>
+        <nav class="lang-switcher">
+          {LOCALES.map((loc) => (
+            <a
+              href={localizedPath(currentPath, loc, normalizedBase)}
+              class:list={[{ active: loc === locale }]}
+              hreflang={loc}
+            >
+              {loc.toUpperCase()}
+            </a>
+          ))}
+        </nav>
+      </div>
     </header>
     <main>
       <slot />

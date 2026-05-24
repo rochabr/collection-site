@@ -1,9 +1,9 @@
 ---
 import { getCollection } from 'astro:content';
-import Base from '../layouts/Base.astro';
-import { t, type Locale } from '../lib/i18n';
+import Base from '../../layouts/Base.astro';
+import { t, type Locale } from '../../lib/i18n';
 
-const locale: Locale = 'pt';
+const locale: Locale = 'en';
 const s = t(locale);
 
 const works = (await getCollection('works')).sort((a, b) =>
@@ -12,7 +12,9 @@ const works = (await getCollection('works')).sort((a, b) =>
 
 const base = import.meta.env.BASE_URL;
 const normalizedBase = base.replace(/\/$/, '');
-const join = (path: string) => `${normalizedBase}/${path.replace(/^\//, '')}`;
+const localeBase = `${normalizedBase}/en`;
+const join = (path: string) => `${localeBase}/${path.replace(/^\//, '')}`;
+const asset = (path: string) => `${normalizedBase}/${path.replace(/^\//, '')}`;
 ---
 <Base title="Acervo Rocha">
   <div class="grid">
@@ -22,7 +24,7 @@ const join = (path: string) => `${normalizedBase}/${path.replace(/^\//, '')}`;
         <a class="card" href={join(`works/${work.id}/`)}>
           <div class="thumb">
             {thumb
-              ? <img src={join(thumb)} alt={`${work.data.artist} — ${work.data.title}`} loading="lazy" />
+              ? <img src={asset(thumb)} alt={`${work.data.artist} — ${work.data.title}`} loading="lazy" />
               : <span>{s.no_image}</span>}
           </div>
           <div class="artist">{work.data.artist}</div>

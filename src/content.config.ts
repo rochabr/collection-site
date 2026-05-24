@@ -23,8 +23,9 @@ const works = defineCollection({
   }),
 });
 
+// Artist entries are keyed `<locale>/<slug>`, e.g. `pt/ivan-serpa`, `en/ivan-serpa`.
 const artists = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/artists' }),
+  loader: glob({ pattern: '*/*.md', base: './src/content/artists' }),
   schema: z.object({
     name: z.string(),
     born: z.string().optional(),

@@ -6,4 +6,11 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
   site: 'https://rochabr.github.io',
   base: '/collection-site',
+  i18n: {
+    defaultLocale: 'pt',
+    locales: ['pt', 'en'],
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
 });
