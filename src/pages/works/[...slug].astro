@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import { slugify } from '../../lib/slugify';
 
 export async function getStaticPaths() {
   const works = await getCollection('works');
@@ -47,7 +48,7 @@ const acquisition = formatAcquisition(work.data.auction_house, work.data.auction
       )}
     </div>
     <div class="meta-col">
-      <h2>{work.data.artist}</h2>
+      <h2><a href={join(`artists/${slugify(work.data.artist)}/`)}>{work.data.artist}</a></h2>
       <div class="title-line">{work.data.title}{work.data.year ? `, ${work.data.year}` : ''}</div>
       <dl>
         {work.data.medium && <><dt>Medium</dt><dd>{work.data.medium}</dd></>}

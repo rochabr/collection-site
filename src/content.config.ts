@@ -23,4 +23,20 @@ const works = defineCollection({
   }),
 });
 
-export const collections = { works };
+const artists = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/artists' }),
+  schema: z.object({
+    name: z.string(),
+    born: z.string().optional(),
+    died: z.string().optional(),
+    birthplace: z.string().optional(),
+    nationality: z.string().optional(),
+    movement: z.string().optional(),
+    sources: z.array(z.object({
+      title: z.string(),
+      url: z.string().url(),
+    })).optional(),
+  }),
+});
+
+export const collections = { works, artists };
