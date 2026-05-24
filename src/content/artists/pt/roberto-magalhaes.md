@@ -6,6 +6,7 @@ nationality: "Brasileiro"
 movement: "Nova Figuração"
 portrait: "roberto-magalhaes.jpg"
 portrait_credit: "Foto: Maurício Lima, 2006 — via Wikimedia Commons"
+hero_position: "center 10%"
 sources:
   - title: "Roberto Magalhães — Enciclopédia Itaú Cultural"
     url: "https://enciclopedia.itaucultural.org.br/pessoas/2730-roberto-magalhaes"

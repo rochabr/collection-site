@@ -7,6 +7,8 @@ nationality: "Brasileiro"
 movement: "Modernismo brasileiro — Grupo Santa Helena / Família Artística Paulista"
 portrait: "clovis-graciano.png"
 portrait_credit: "Revista Sombra, n.25 (1943) — domínio público via Wikimedia Commons"
+hero_size: "200%"
+hero_position: "center 30%"
 sources:
   - title: "Clóvis Graciano — Enciclopédia Itaú Cultural"
     url: "https://enciclopedia.itaucultural.org.br/pessoas/1427-clovis-graciano"

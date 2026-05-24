@@ -18,7 +18,12 @@ export async function getStaticPaths() {
         artist,
         works: works
           .filter((w) => slugify(w.data.artist) === slug)
-          .sort((a, b) => (a.data.year ?? '').localeCompare(b.data.year ?? '')),
+          .sort((a, b) => {
+            // Dated works first, undated last
+            const ay = a.data.year ?? '￿';
+            const by = b.data.year ?? '￿';
+            return ay.localeCompare(by);
+          }),
       },
     };
   });
@@ -44,17 +49,26 @@ function heroSubtitle(): string | null {
 
 const subtitle = heroSubtitle();
 
-// Hero background: first work's first image (chronologically earliest).
+// Hero background: explicit override in frontmatter, else first work's first image.
 const heroWork = works[0];
-const heroImage = heroWork?.data.images?.[0]
-  ? join(heroWork.data.images[0])
-  : null;
-const heroCaption = heroWork
-  ? `${heroWork.data.title}${heroWork.data.year ? `, ${heroWork.data.year}` : ''}`
-  : null;
+const heroImage = artist.data.hero_image
+  ? join(artist.data.hero_image)
+  : heroWork?.data.images?.[0]
+    ? join(heroWork.data.images[0])
+    : null;
+const heroCaption = artist.data.hero_image
+  ? null  // suppress caption when using a custom hero image
+  : heroWork
+    ? `${heroWork.data.title}${heroWork.data.year ? `, ${heroWork.data.year}` : ''}`
+    : null;
+const heroPosition = artist.data.hero_position ?? 'center 25%';
+const heroSize = artist.data.hero_size ?? 'cover';
+const heroStyle = heroImage
+  ? `background-image: url(${heroImage}); background-position: ${heroPosition}; background-size: ${heroSize};`
+  : undefined;
 ---
 <Base title={artist.data.name}>
-  <section class="artist-hero" style={heroImage ? `background-image: url(${heroImage})` : undefined}>
+  <section class="artist-hero" style={heroStyle}>
     <a class="hero-back" href={join('artists/')}>{s.back_artists}</a>
     <div class="artist-hero-content">
       <h2>{artist.data.name}</h2>

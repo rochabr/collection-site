@@ -7,6 +7,8 @@ nationality: "Brazilian"
 movement: "Popular / Cearense modernism"
 portrait: "chico-da-silva.jpg"
 portrait_credit: "Source unverified — via fortalezaemfotos.com.br"
+hero_size: "150%"
+hero_position: "center 40%"
 sources:
   - title: "Coleção Chico da Silva — Museu de Arte da UFC (MAUC)"
     url: "https://mauc.ufc.br/pt/acervo-colecoes/colecao-chico-da-silva/"

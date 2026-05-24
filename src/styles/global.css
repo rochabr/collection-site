@@ -330,9 +330,8 @@ a.back:hover { color: var(--fg); }
   margin-top: -2rem;
   margin-bottom: 2.5rem;
   height: clamp(360px, 58vh, 560px);
-  background-size: cover;
-  background-position: center 25%;
   background-color: #2a2724;
+  background-repeat: no-repeat;
   overflow: hidden;
 }
 .artist-hero::after {
@@ -361,6 +360,11 @@ a.back:hover { color: var(--fg); }
   bottom: 2.5rem;
   z-index: 2;
   color: white;
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.55), 0 0 3px rgba(0, 0, 0, 0.4);
+}
+.artist-hero .hero-back,
+.artist-hero .hero-caption {
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.5), 0 0 2px rgba(0, 0, 0, 0.35);
 }
 .artist-hero-content h2 {
   margin: 0;

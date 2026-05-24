@@ -7,6 +7,8 @@ nationality: "Austro-brasileiro"
 movement: "Arte concreta / Grupo Ruptura"
 portrait: "lothar-charoux.jpg"
 portrait_credit: "Folha da Manhã, 1959 — domínio público via Wikimedia Commons. Charoux à direita, com Waldemar Cordeiro."
+hero_size: "130%"
+hero_position: "center 50%"
 sources:
   - title: "Lothar Charoux — Enciclopédia Itaú Cultural"
     url: "https://enciclopedia.itaucultural.org.br/pessoas/2207-lothar-charoux"
