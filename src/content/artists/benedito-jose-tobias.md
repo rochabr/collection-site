@@ -4,6 +4,7 @@ born: "1894"
 died: "1963"
 birthplace: "São Paulo, SP"
 nationality: "Brazilian"
+portrait: "benedito-jose-tobias.jpg"
 movement: "Afro-Brazilian figurative painting"
 sources:
   - title: "B. J. Tobias — Enciclopédia Itaú Cultural"
