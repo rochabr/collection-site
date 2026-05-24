@@ -5,6 +5,8 @@ died: "2022"
 birthplace: "Santo Amaro da Purificação, BA"
 nationality: "Brazilian"
 movement: "Afro-Brazilian modernism / geometric constructivism"
+portrait: "emanoel-araujo.jpg"
+portrait_credit: "Photo: Carlos Ebert — CC BY 2.0 via Wikimedia Commons"
 sources:
   - title: "Emanoel Araújo — Projeto Afro"
     url: "https://projetoafro.com/artista/emanoel-araujo/"

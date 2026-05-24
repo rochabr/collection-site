@@ -5,6 +5,8 @@ died: "1988"
 birthplace: "Araras, SP"
 nationality: "Brazilian"
 movement: "Brazilian modernism — Grupo Santa Helena / Família Artística Paulista"
+portrait: "clovis-graciano.png"
+portrait_credit: "Revista Sombra, n.25 (1943) — public domain via Wikimedia Commons"
 sources:
   - title: "Clóvis Graciano — Enciclopédia Itaú Cultural"
     url: "https://enciclopedia.itaucultural.org.br/pessoas/1427-clovis-graciano"

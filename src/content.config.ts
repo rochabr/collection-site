@@ -32,6 +32,8 @@ const artists = defineCollection({
     birthplace: z.string().optional(),
     nationality: z.string().optional(),
     movement: z.string().optional(),
+    portrait: z.string().optional(),
+    portrait_credit: z.string().optional(),
     sources: z.array(z.object({
       title: z.string(),
       url: z.string().url(),

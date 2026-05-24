@@ -28,6 +28,9 @@ const join = (path: string) =>
       return (
         <li>
           <a href={join(`artists/${artist.id}/`)}>
+            {artist.data.portrait
+              ? <img class="thumb-mini" src={join(`images/artists/${artist.data.portrait}`)} alt="" loading="lazy" />
+              : <span class="thumb-mini placeholder" aria-hidden="true">{artist.data.name.split(' ').map(w => w[0]).join('').slice(0, 2)}</span>}
             <span class="name">{artist.data.name}</span>
             {dates && <span class="dates"> ({dates})</span>}
             <span class="count">{count} {count === 1 ? 'work' : 'works'}</span>

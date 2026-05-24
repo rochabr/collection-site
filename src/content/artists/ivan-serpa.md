@@ -5,6 +5,8 @@ died: "1973"
 birthplace: "Rio de Janeiro, RJ"
 nationality: "Brazilian"
 movement: "Geometric abstraction / Concrete art"
+portrait: "ivan-serpa.jpg"
+portrait_credit: "Arquivo Nacional (Fundo Correio da Manhã), 1965 — public domain via Wikimedia Commons"
 sources:
   - title: "Ivan Serpa — MAM Rio"
     url: "https://mam.rio/artistas/ivan-serpa/"

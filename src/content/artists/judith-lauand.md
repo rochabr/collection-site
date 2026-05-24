@@ -5,6 +5,8 @@ died: "2022"
 birthplace: "Pontal, SP"
 nationality: "Brazilian"
 movement: "Concrete art / geometric abstraction"
+portrait: "judith-lauand.jpg"
+portrait_credit: "MAM-SP (2nd Bienal de São Paulo, 1954) — CC0 via Wikimedia Commons"
 sources:
   - title: "Judith Lauand: Concrete Detour — MASP"
     url: "https://masp.org.br/en/exhibitions/judith-concrete-detour"

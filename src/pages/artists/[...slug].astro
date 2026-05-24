@@ -30,9 +30,17 @@ const join = (path: string) =>
 <Base title={artist.data.name}>
   <a class="back" href={join('artists/')}>← Artists</a>
   <header class="artist-header">
-    <h2>{artist.data.name}</h2>
-    {dates && <div class="dates">{dates}</div>}
-    {meta && <div class="meta">{meta}</div>}
+    {artist.data.portrait && (
+      <img class="portrait" src={join(`images/artists/${artist.data.portrait}`)} alt={`Portrait of ${artist.data.name}`} />
+    )}
+    <div class="artist-meta">
+      <h2>{artist.data.name}</h2>
+      {dates && <div class="dates">{dates}</div>}
+      {meta && <div class="meta">{meta}</div>}
+      {artist.data.portrait_credit && (
+        <div class="portrait-credit">{artist.data.portrait_credit}</div>
+      )}
+    </div>
   </header>
 
   <div class="bio">

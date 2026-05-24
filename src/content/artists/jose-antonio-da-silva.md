@@ -5,6 +5,8 @@ died: "1996"
 birthplace: "Sales Oliveira, SP"
 nationality: "Brazilian"
 movement: "Naïf / primitivist Brazilian painting"
+portrait: "jose-antonio-da-silva.png"
+portrait_credit: "Archival press photo via Arremate Arte (source unverified)"
 sources:
   - title: "José Antônio da Silva — Enciclopédia Itaú Cultural"
     url: "https://enciclopedia.itaucultural.org.br/pessoas/633-jose-antonio-da-silva"

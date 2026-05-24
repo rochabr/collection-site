@@ -5,6 +5,8 @@ died: "2008"
 birthplace: "Rio de Janeiro, RJ"
 nationality: "Brazilian"
 movement: "Brazilian modernism / architectural integration"
+portrait: "athos-bulcao.jpg"
+portrait_credit: "Photo of portrait panel at the Fundação Athos Bulcão, Brasília. Photo: Olimor (2013) — CC BY-SA 3.0 via Wikimedia Commons"
 sources:
   - title: "Fundação Athos Bulcão"
     url: "https://www.fundathos.org.br/"

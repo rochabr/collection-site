@@ -4,6 +4,8 @@ born: "1944"
 birthplace: "Itagibá, BA"
 nationality: "Brazilian"
 movement: "Naïf / popular Brazilian painting"
+portrait: "waldomiro-de-deus.jpg"
+portrait_credit: "Photo: Fernanda Guerra Gil / Núcleo Editorial — CC BY 2.0 via Wikimedia Commons"
 sources:
   - title: "Waldomiro de Deus — Enciclopédia Itaú Cultural"
     url: "https://enciclopedia.itaucultural.org.br/pessoas/2098-waldomiro-de-deus"

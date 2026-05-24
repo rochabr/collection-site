@@ -200,11 +200,25 @@ a.back:hover { color: var(--fg); }
 .artist-list li { border-bottom: 1px solid var(--line); }
 .artist-list a {
   display: flex;
-  align-items: baseline;
-  gap: 0.5rem;
-  padding: 0.85rem 0;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.6rem 0;
   text-decoration: none;
   color: inherit;
+}
+.artist-list .thumb-mini {
+  width: 44px;
+  height: 44px;
+  object-fit: cover;
+  background: #ece9e2;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
 }
 .artist-list a:hover .name { text-decoration: underline; }
 .artist-list .name { font-weight: 500; }
@@ -215,10 +229,29 @@ a.back:hover { color: var(--fg); }
   margin-left: auto;
 }
 
-.artist-header { margin-bottom: 1.5rem; }
+.artist-header {
+  margin-bottom: 2rem;
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+.artist-header .portrait {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  flex-shrink: 0;
+  background: #ece9e2;
+}
+.artist-header .artist-meta { flex: 1; min-width: 0; }
 .artist-header h2 { margin: 0; font-weight: 500; }
 .artist-header .dates { color: var(--muted); margin-top: 0.25rem; }
 .artist-header .meta { color: var(--muted); font-size: 0.9rem; margin-top: 0.25rem; }
+.artist-header .portrait-credit {
+  color: var(--muted);
+  font-size: 0.75rem;
+  margin-top: 0.75rem;
+  font-style: italic;
+}
 
 .bio { max-width: 720px; }
 .bio p { margin: 0 0 1em; }

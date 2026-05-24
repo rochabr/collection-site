@@ -4,6 +4,8 @@ born: "1940"
 birthplace: "Rio de Janeiro, RJ"
 nationality: "Brazilian"
 movement: "Nova Figuração / new figuration"
+portrait: "roberto-magalhaes.jpg"
+portrait_credit: "Photo: Maurício Lima, 2006 — via Wikimedia Commons"
 sources:
   - title: "Roberto Magalhães — Enciclopédia Itaú Cultural"
     url: "https://enciclopedia.itaucultural.org.br/pessoas/2730-roberto-magalhaes"
