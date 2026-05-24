@@ -30,12 +30,21 @@ const currentPath = Astro.url.pathname;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{docTitle}</title>
+    <link rel="icon" href={join('favicon.ico')} sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href={join('favicon-32.png')} />
+    <link rel="icon" type="image/png" sizes="16x16" href={join('favicon-16.png')} />
+    <link rel="apple-touch-icon" sizes="180x180" href={join('apple-touch-icon.png')} />
   </head>
   <body>
     <header>
       <div class="header-row">
         <div class="header-main">
-          <a href={homePath} class="site-title"><h1>{SITE}</h1></a>
+          <a href={homePath} class="site-title">
+            <h1>
+              <img src={join('images/logo-wordmark-black.png')} alt={SITE} class="logo" />
+              <span class="visually-hidden">{SITE}</span>
+            </h1>
+          </a>
           <nav>
             <a href={homePath}>{s.works}</a>
             <a href={artistsPath}>{s.artists}</a>
