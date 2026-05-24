@@ -5,6 +5,7 @@ died: "1963"
 birthplace: "São Paulo, SP"
 nationality: "Brazilian"
 portrait: "benedito-jose-tobias.jpg"
+portrait_credit: "Copyright: Marcia Gabriel / Isabella Finholdt / Museu Afro Brasil"
 movement: "Afro-Brazilian figurative painting"
 sources:
   - title: "B. J. Tobias — Enciclopédia Itaú Cultural"
