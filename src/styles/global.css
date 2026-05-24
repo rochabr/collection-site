@@ -1,0 +1,95 @@
+:root {
+  --bg: #fafaf7;
+  --fg: #1a1a1a;
+  --muted: #666;
+  --line: #e5e5e0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  line-height: 1.5;
+}
+
+header {
+  padding: 2rem 3rem 1rem;
+  border-bottom: 1px solid var(--line);
+}
+header a { text-decoration: none; color: inherit; }
+header h1 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 1.5rem;
+  letter-spacing: 0.05em;
+}
+
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 3rem 4rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+.card { text-decoration: none; color: inherit; display: block; }
+.card .thumb {
+  aspect-ratio: 1;
+  background: #ece9e2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-bottom: 0.75rem;
+  overflow: hidden;
+}
+.card .thumb img { width: 100%; height: 100%; object-fit: cover; }
+.card .artist { font-weight: 500; }
+.card .title { font-style: italic; color: var(--muted); font-size: 0.9rem; }
+
+.work-page {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 3rem;
+}
+@media (max-width: 800px) {
+  .work-page { grid-template-columns: 1fr; }
+}
+.work-page .image-col img { width: 100%; height: auto; display: block; }
+.work-page .image-col .placeholder {
+  aspect-ratio: 1;
+  background: #ece9e2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+}
+.work-page h2 { font-weight: 500; margin: 0; }
+.work-page .title-line { font-style: italic; color: var(--muted); margin-top: 0.25rem; }
+.work-page dl { margin: 1.5rem 0 0; }
+.work-page dt {
+  color: var(--muted);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 1rem;
+}
+.work-page dd { margin: 0.25rem 0 0; }
+.work-page .description { margin-top: 2rem; }
+
+a.back {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+a.back:hover { color: var(--fg); }
