@@ -3,7 +3,8 @@
   --fg: #1a1a1a;
   --muted: #666;
   --line: #e5e5e0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --font-ui: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --font-serif: 'Crimson Pro', Georgia, "Times New Roman", serif;
 }
 
 * { box-sizing: border-box; }
@@ -13,6 +14,39 @@ body {
   background: var(--bg);
   color: var(--fg);
   line-height: 1.5;
+  font-family: var(--font-ui);
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Editorial serif applied to bio prose, italic subtitles, and artist-name headings */
+.bio,
+.description,
+.card .title,
+.work-page .title-line,
+.work-page h2,
+.artist-header h2 {
+  font-family: var(--font-serif);
+}
+
+.bio,
+.description {
+  font-size: 1.1rem;
+  line-height: 1.65;
+}
+
+.card .title,
+.work-page .title-line {
+  font-style: italic;
+  font-size: 1.05rem;
+}
+
+.work-page h2,
+.artist-header h2 {
+  font-size: 1.75rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
 }
 
 header {
@@ -122,7 +156,7 @@ main {
   object-fit: contain;
 }
 .card .artist { font-weight: 500; }
-.card .title { font-style: italic; color: var(--muted); font-size: 0.9rem; }
+.card .title { color: var(--muted); }
 
 .work-page {
   display: grid;
@@ -142,8 +176,8 @@ main {
   justify-content: center;
   color: var(--muted);
 }
-.work-page h2 { font-weight: 500; margin: 0; }
-.work-page .title-line { font-style: italic; color: var(--muted); margin-top: 0.25rem; }
+.work-page h2 { margin: 0; }
+.work-page .title-line { color: var(--muted); margin-top: 0.25rem; }
 .work-page dl { margin: 1.5rem 0 0; }
 .work-page dt {
   color: var(--muted);
@@ -275,7 +309,7 @@ a.back:hover { color: var(--fg); }
   background: #ece9e2;
 }
 .artist-header .artist-meta { flex: 1; min-width: 0; }
-.artist-header h2 { margin: 0; font-weight: 500; }
+.artist-header h2 { margin: 0; }
 .artist-header .dates { color: var(--muted); margin-top: 0.25rem; }
 .artist-header .meta { color: var(--muted); font-size: 0.9rem; margin-top: 0.25rem; }
 .artist-header .portrait-credit {
