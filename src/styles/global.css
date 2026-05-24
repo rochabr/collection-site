@@ -84,6 +84,13 @@ main {
 }
 .work-page dd { margin: 0.25rem 0 0; }
 .work-page .description { margin-top: 2rem; }
+.work-page .extras {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+.work-page .extras img { width: 100%; height: auto; display: block; }
 
 a.back {
   display: inline-block;

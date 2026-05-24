@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 
 const works = (await getCollection('works')).sort((a, b) =>
-  a.data.artist.localeCompare(b.data.artist)
+  a.data.artist.localeCompare(b.data.artist, 'pt-BR')
 );
 
 const base = import.meta.env.BASE_URL;
@@ -12,16 +12,19 @@ const join = (path: string) =>
 ---
 <Base title="Collection">
   <div class="grid">
-    {works.map((work) => (
-      <a class="card" href={join(`works/${work.id}/`)}>
-        <div class="thumb">
-          {work.data.image
-            ? <img src={join(work.data.image)} alt={`${work.data.artist} — ${work.data.title}`} />
-            : <span>No image</span>}
-        </div>
-        <div class="artist">{work.data.artist}</div>
-        <div class="title">{work.data.title}{work.data.year ? `, ${work.data.year}` : ''}</div>
-      </a>
-    ))}
+    {works.map((work) => {
+      const thumb = work.data.images?.[0];
+      return (
+        <a class="card" href={join(`works/${work.id}/`)}>
+          <div class="thumb">
+            {thumb
+              ? <img src={join(thumb)} alt={`${work.data.artist} — ${work.data.title}`} loading="lazy" />
+              : <span>No image</span>}
+          </div>
+          <div class="artist">{work.data.artist}</div>
+          <div class="title">{work.data.title}{work.data.year ? `, ${work.data.year}` : ''}</div>
+        </a>
+      );
+    })}
   </div>
 </Base>
