@@ -25,6 +25,7 @@ export const strings = {
     close: 'Fechar',
     work_singular: 'obra',
     work_plural: 'obras',
+    born_prefix: 'n.',
   },
   en: {
     works: 'Works',
@@ -48,6 +49,7 @@ export const strings = {
     close: 'Close',
     work_singular: 'work',
     work_plural: 'works',
+    born_prefix: 'b.',
   },
 } as const;
 

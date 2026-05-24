@@ -28,34 +28,47 @@ const { artist, works } = Astro.props;
 const { Content } = await render(artist);
 const s = t(locale);
 
-const dates = [artist.data.born, artist.data.died].filter(Boolean).join(' – ');
-const meta = [artist.data.nationality, artist.data.movement].filter(Boolean).join(' — ');
-
 const base = import.meta.env.BASE_URL;
 const normalizedBase = base.replace(/\/$/, '');
 const localeBase = `${normalizedBase}/en`;
 const join = (path: string) => `${localeBase}/${path.replace(/^\//, '')}`;
 const asset = (path: string) => `${normalizedBase}/${path.replace(/^\//, '')}`;
+
+function heroSubtitle(): string | null {
+  const { born, died, birthplace } = artist.data;
+  if (!born && !died && !birthplace) return null;
+  let datePart = '';
+  if (born && died) datePart = `${born}–${died}`;
+  else if (born) datePart = `${s.born_prefix} ${born}`;
+  else if (died) datePart = `d. ${died}`;
+  return [datePart, birthplace].filter(Boolean).join(', ');
+}
+
+const subtitle = heroSubtitle();
+const heroImage = artist.data.portrait
+  ? asset(`images/artists/${artist.data.portrait}`)
+  : null;
 ---
 <Base title={artist.data.name}>
-  <a class="back" href={join('artists/')}>{s.back_artists}</a>
-  <header class="artist-header">
-    {artist.data.portrait && (
-      <img class="portrait" src={asset(`images/artists/${artist.data.portrait}`)} alt={artist.data.name} />
-    )}
-    <div class="artist-meta">
+  <section class="artist-hero" style={heroImage ? `background-image: url(${heroImage})` : undefined}>
+    <a class="hero-back" href={join('artists/')}>{s.back_artists}</a>
+    <div class="artist-hero-content">
       <h2>{artist.data.name}</h2>
-      {dates && <div class="dates">{dates}</div>}
-      {meta && <div class="meta">{meta}</div>}
-      {artist.data.portrait_credit && (
-        <div class="portrait-credit">{artist.data.portrait_credit}</div>
-      )}
+      {subtitle && <div class="hero-subtitle">{subtitle}</div>}
     </div>
-  </header>
+  </section>
+
+  {artist.data.movement && (
+    <div class="bio-meta">{artist.data.movement}</div>
+  )}
 
   <div class="bio">
     <Content />
   </div>
+
+  {artist.data.portrait_credit && (
+    <div class="portrait-credit-line">{artist.data.portrait_credit}</div>
+  )}
 
   {artist.data.sources && artist.data.sources.length > 0 && (
     <section class="sources">
