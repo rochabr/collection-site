@@ -19,7 +19,6 @@ const join = (path: string) =>
 
 const images = work.data.images ?? [];
 const primary = images[0];
-const extras = images.slice(1);
 
 function formatAcquisition(house?: string, date?: Date): string | null {
   if (!house && !date) return null;
@@ -35,12 +34,14 @@ const acquisition = formatAcquisition(work.data.auction_house, work.data.auction
   <div class="work-page">
     <div class="image-col">
       {primary
-        ? <img src={join(primary)} alt={`${work.data.artist} — ${work.data.title}`} />
+        ? <img id="primary-image" src={join(primary)} alt={`${work.data.artist} — ${work.data.title}`} />
         : <div class="placeholder">No image</div>}
-      {extras.length > 0 && (
+      {images.length > 1 && (
         <div class="extras">
-          {extras.map((src) => (
-            <img src={join(src)} alt="" loading="lazy" />
+          {images.map((src, i) => (
+            <button type="button" class:list={["thumb-btn", { active: i === 0 }]} data-src={join(src)} aria-label={`View image ${i + 1} of ${images.length}`}>
+              <img src={join(src)} alt="" loading="lazy" />
+            </button>
           ))}
         </div>
       )}
@@ -64,3 +65,23 @@ const acquisition = formatAcquisition(work.data.auction_house, work.data.auction
     </div>
   </div>
 </Base>
+
+<script>
+  const primary = document.getElementById('primary-image') as HTMLImageElement | null;
+  const thumbs = Array.from(document.querySelectorAll<HTMLButtonElement>('.thumb-btn'));
+  if (primary && thumbs.length > 0) {
+    const setActive = (idx: number) => {
+      const src = thumbs[idx]?.dataset.src;
+      if (src) primary.src = src;
+      thumbs.forEach((t, i) => t.classList.toggle('active', i === idx));
+    };
+    thumbs.forEach((btn, i) => btn.addEventListener('click', () => setActive(i)));
+
+    document.addEventListener('keydown', (e) => {
+      const active = thumbs.findIndex(t => t.classList.contains('active'));
+      if (active < 0) return;
+      if (e.key === 'ArrowRight') setActive((active + 1) % thumbs.length);
+      else if (e.key === 'ArrowLeft') setActive((active - 1 + thumbs.length) % thumbs.length);
+    });
+  }
+</script>
