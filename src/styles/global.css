@@ -155,6 +155,32 @@ main {
   height: auto;
   object-fit: contain;
 }
+
+/* When a grid contains work-cards, switch to a column-packed masonry layout
+   so each artwork keeps its natural aspect ratio instead of being squared. */
+.grid:has(> .work-card) {
+  display: block;
+  columns: 300px;
+  column-gap: 2rem;
+}
+.grid:has(> .work-card) > .work-card {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 2rem;
+  break-inside: avoid;
+}
+.grid:has(> .work-card) > .work-card .thumb {
+  aspect-ratio: auto;
+  padding: 0;
+  background: transparent;
+  overflow: visible;
+}
+.grid:has(> .work-card) > .work-card .thumb img {
+  width: 100%;
+  height: auto;
+  max-height: none;
+  display: block;
+}
 .card .artist { font-weight: 500; }
 .card .title { color: var(--muted); }
 
