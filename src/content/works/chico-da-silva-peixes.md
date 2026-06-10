@@ -13,6 +13,6 @@ premium_brl: 85
 images:
   - /images/works/chico-da-silva-peixes-1.jpg
   - /images/works/chico-da-silva-peixes-2.jpg
-  - /images/works/chico-da-silva-peixes-1.jpg
-  - /images/works/chico-da-silva-peixes-1.jpg
+  - /images/works/chico-da-silva-peixes-3.jpg
+  - /images/works/chico-da-silva-peixes-4.jpg
 ---
