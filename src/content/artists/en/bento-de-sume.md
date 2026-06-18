@@ -1,6 +1,6 @@
 ---
 name: "Bento de Sumé"
-born: "1928"
+born: "1961"
 birthplace: "Sumé, PB"
 nationality: "Brazilian"
 movement: "Brazilian popular (folk) art"
