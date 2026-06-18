@@ -10,10 +10,10 @@ lot_number: "256"
 hammer_brl: 30
 premium_brl: 1.50
 images:
-  - /images/works/vitalino-filho-trabalhador-1.png
-  - /images/works/vitalino-filho-trabalhador-2.png
-  - /images/works/vitalino-filho-trabalhador-3.png
-  - /images/works/vitalino-filho-trabalhador-4.png
-  - /images/works/vitalino-filho-trabalhador-5.png
-  - /images/works/vitalino-filho-trabalhador-6.png
+  - /images/works/vitalino-filho-trabalhador-1.jpg
+  - /images/works/vitalino-filho-trabalhador-2.jpg
+  - /images/works/vitalino-filho-trabalhador-3.jpg
+  - /images/works/vitalino-filho-trabalhador-4.jpg
+  - /images/works/vitalino-filho-trabalhador-5.jpg
+  - /images/works/vitalino-filho-trabalhador-6.jpg
 ---
