@@ -6,7 +6,6 @@ nationality: "Brazilian"
 movement: "Brazilian popular (folk) art"
 portrait: "bento-de-sume.jpeg"
 portrait_credit: "Governo da Paraiba - https://redeartesol.org.br/rede/bento-de-sume/"
-hero_position: "center 50%"
 sources:
   - title: "Rede Artesol — Bento de Sumé"
     url: "https://redeartesol.org.br/rede/bento-de-sume/"
