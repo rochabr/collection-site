@@ -17,9 +17,7 @@ for (const w of works) {
   worksByArtist.set(key, (worksByArtist.get(key) ?? 0) + 1);
 }
 
-const sorted = artists.sort((a, b) =>
-  a.data.name.localeCompare(b.data.name, 'pt-BR')
-);
+const sorted = artists.sort((a, b) => a.data.name.localeCompare(b.data.name, 'pt-BR'));
 
 const base = import.meta.env.BASE_URL;
 const normalizedBase = base.replace(/\/$/, '');
@@ -30,23 +28,37 @@ const slugOf = (id: string) => id.replace(/^[a-z]{2}\//, '');
 
 const initials = (name: string) =>
   name.split(' ').filter(Boolean).map((w) => w[0]).join('').slice(0, 2);
+
+const line = (a: (typeof sorted)[number]) => {
+  const dates = [a.data.born, a.data.died].filter(Boolean).join(' – ');
+  return [dates, a.data.movement].filter(Boolean).join(' · ');
+};
 ---
 <Base title={s.artists}>
-  <div class="grid">
+  <div class="page-head">
+    <div class="row">
+      <h1>{s.artists}</h1>
+      <span class="meta">{sorted.length} · {works.length} {s.works_label}</span>
+    </div>
+    <p class="intro">{s.artists_intro}</p>
+  </div>
+
+  <div class="artist-index">
     {sorted.map((artist) => {
       const slug = slugOf(artist.id);
       const count = worksByArtist.get(slug) ?? 0;
-      const dates = [artist.data.born, artist.data.died].filter(Boolean).join(' – ');
       return (
-        <a class="card" href={join(`artists/${slug}/`)}>
-          <div class="thumb">
+        <a class="artist-row" href={join(`artists/${slug}/`)}>
+          <div class="ar-portrait">
             {artist.data.portrait
               ? <img src={asset(`images/artists/${artist.data.portrait}`)} alt={artist.data.name} loading="lazy" />
               : <span class="initials">{initials(artist.data.name)}</span>}
           </div>
-          <div class="artist">{artist.data.name}</div>
-          {dates && <div class="title">{dates}</div>}
-          <div class="count">{workCount(count, locale)}</div>
+          <div class="ar-info">
+            <div class="ar-name">{artist.data.name}</div>
+            <div class="ar-line">{line(artist)}</div>
+          </div>
+          <div class="ar-count">{workCount(count, locale)}</div>
         </a>
       );
     })}

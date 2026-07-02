@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { getCollection } from 'astro:content';
 import { t, DEFAULT_LOCALE, LOCALES, type Locale, localizedPath } from '../lib/i18n';
 
 const SITE = 'Acervo Rocha';
@@ -23,6 +24,17 @@ const artistsPath = locale === DEFAULT_LOCALE
   : `${normalizedBase}/${locale}/artists/`;
 
 const currentPath = Astro.url.pathname;
+// Active nav state (strip base + optional /en prefix, then test the section)
+let rel = currentPath.startsWith(normalizedBase) ? currentPath.slice(normalizedBase.length) : currentPath;
+if (rel.startsWith('/en')) rel = rel.slice(3) || '/';
+const onArtists = rel.startsWith('/artists');
+const onWorks = !onArtists;
+
+// Footer counts
+const allWorks = await getCollection('works');
+const allArtists = await getCollection('artists');
+const worksCount = allWorks.length;
+const artistsCount = allArtists.filter((a) => a.id.startsWith(`${DEFAULT_LOCALE}/`)).length;
 ---
 <!doctype html>
 <html lang={locale === 'pt' ? 'pt-BR' : 'en'}>
@@ -36,7 +48,10 @@ const currentPath = Astro.url.pathname;
     <link rel="apple-touch-icon" sizes="180x180" href={join('apple-touch-icon.png')} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;1,400&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400;1,6..72,500&family=Hanken+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <header>
@@ -46,10 +61,11 @@ const currentPath = Astro.url.pathname;
             <img src={join('images/logo-wordmark-black.png')} alt={SITE} class="logo" />
             <span class="visually-hidden">{SITE}</span>
           </h1>
+          <span class="tag">{s.tagline}</span>
         </a>
         <nav class="main-nav">
-          <a href={homePath}>{s.works}</a>
-          <a href={artistsPath}>{s.artists}</a>
+          <a href={homePath} class:list={[{ active: onWorks }]}>{s.works}</a>
+          <a href={artistsPath} class:list={[{ active: onArtists }]}>{s.artists}</a>
         </nav>
         <nav class="lang-switcher">
           {LOCALES.map((loc) => (
@@ -67,5 +83,11 @@ const currentPath = Astro.url.pathname;
     <main>
       <slot />
     </main>
+    <footer>
+      <div class="footer-row">
+        <img class="footmark" src={join('images/logo-monogram.png')} alt="AR" />
+        <span class="footnote">{worksCount} {s.works_label} · {artistsCount} {s.artists_label}</span>
+      </div>
+    </footer>
   </body>
 </html>

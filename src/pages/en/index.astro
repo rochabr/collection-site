@@ -1,7 +1,9 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import { slugify } from '../../lib/slugify';
 import { t, type Locale } from '../../lib/i18n';
+import { CHAPTERS, groupForArtist } from '../../lib/chapters';
 
 const locale: Locale = 'en';
 const s = t(locale);
@@ -15,22 +17,65 @@ const normalizedBase = base.replace(/\/$/, '');
 const localeBase = `${normalizedBase}/en`;
 const join = (path: string) => `${localeBase}/${path.replace(/^\//, '')}`;
 const asset = (path: string) => `${normalizedBase}/${path.replace(/^\//, '')}`;
+
+const catalog = new Map(works.map((w, i) => [w.id, String(i + 1).padStart(2, '0')]));
+const artistCount = new Set(works.map((w) => slugify(w.data.artist))).size;
+const featured = works.find((w) => w.id === 'carybe-baianas') ?? works[0];
+
+const grouped = CHAPTERS.map((ch) => ({
+  ch,
+  items: works.filter((w) => groupForArtist(slugify(w.data.artist)) === ch.key),
+})).filter((g) => g.items.length > 0);
 ---
 <Base title="Acervo Rocha">
-  <div class="grid">
-    {works.map((work) => {
-      const thumb = work.data.images?.[0];
-      return (
-        <a class="card work-card" href={join(`works/${work.id}/`)}>
-          <div class="thumb">
-            {thumb
-              ? <img src={asset(thumb)} alt={`${work.data.artist} — ${work.data.title}`} loading="lazy" />
-              : <span>{s.no_image}</span>}
-          </div>
-          <div class="artist">{work.data.artist}</div>
-          <div class="title">{work.data.title}{work.data.year ? `, ${work.data.year}` : ''}</div>
-        </a>
-      );
-    })}
-  </div>
+  <section class="home-hero">
+    <div class="hero-lead">
+      <div class="eyebrow">{s.eyebrow}</div>
+      <h1 class="hero-head">{s.hero_head}</h1>
+      <p class="hero-body">{s.hero_body}</p>
+      <div class="stats">
+        <div class="stat"><span class="num">{works.length}</span><span class="lbl">{s.works_label}</span></div>
+        <div class="stat"><span class="num">{artistCount}</span><span class="lbl">{s.artists_label}</span></div>
+      </div>
+    </div>
+    <a class="featured" href={join(`works/${featured.id}/`)}>
+      <div class="featured-img">
+        {featured.data.images?.[0] && (
+          <img src={asset(featured.data.images[0])} alt={`${featured.data.artist} — ${featured.data.title}`} loading="lazy" />
+        )}
+      </div>
+      <div class="featured-cap">
+        <span class="cat">Nº {catalog.get(featured.id)}</span>
+        <span class="fa">{featured.data.artist}</span>
+        <span class="ft">{featured.data.title}</span>
+      </div>
+    </a>
+  </section>
+
+  {grouped.map(({ ch, items }) => (
+    <section class="chapter">
+      <div class="chapter-head">
+        <span class="roman">{ch.roman}</span>
+        <h2>{ch.labels[locale]}</h2>
+        <span class="blurb">{ch.blurbs[locale]}</span>
+      </div>
+      <div class="grid">
+        {items.map((work) => {
+          const thumb = work.data.images?.[0];
+          return (
+            <a class="card work-card" href={join(`works/${work.id}/`)}>
+              <div class="thumb">
+                {thumb
+                  ? <img src={asset(thumb)} alt={`${work.data.artist} — ${work.data.title}`} loading="lazy" />
+                  : <span>{s.no_image}</span>}
+                <span class="cat">Nº {catalog.get(work.id)}</span>
+              </div>
+              <div class="artist">{work.data.artist}</div>
+              <div class="title">{work.data.title}{work.data.year ? `, ${work.data.year}` : ''}</div>
+            </a>
+          );
+        })}
+      </div>
+    </section>
+  ))}
 </Base>

@@ -26,6 +26,15 @@ export const strings = {
     work_singular: 'obra',
     work_plural: 'obras',
     born_prefix: 'n.',
+    // Home + chrome
+    tagline: 'Arte Brasileira',
+    eyebrow: 'Acervo particular de arte brasileira',
+    hero_head: 'Um panorama vivo da arte brasileira — do concretismo aos mestres populares.',
+    hero_body: 'Reunida ao longo de décadas, a coleção percorre a abstração construtiva, a figuração moderna e a força da arte popular — um retrato plural da criação brasileira do século XX aos dias de hoje.',
+    works_label: 'obras',
+    artists_label: 'artistas',
+    artists_intro: 'Trinta artistas entre modernos, concretos, mestres populares e vozes contemporâneas e indígenas.',
+    zoom_hint: 'Clique para ampliar',
   },
   en: {
     works: 'Works',
@@ -50,6 +59,15 @@ export const strings = {
     work_singular: 'work',
     work_plural: 'works',
     born_prefix: 'b.',
+    // Home + chrome
+    tagline: 'Brazilian Art',
+    eyebrow: 'A private collection of Brazilian art',
+    hero_head: 'A living panorama of Brazilian art — from concretism to the popular masters.',
+    hero_body: 'Assembled over decades, the collection spans constructive abstraction, modern figuration and the force of popular art — a plural portrait of Brazilian creation from the 20th century to today.',
+    works_label: 'works',
+    artists_label: 'artists',
+    artists_intro: 'Thirty artists spanning moderns, concretists, popular masters and contemporary and Indigenous voices.',
+    zoom_hint: 'Click to zoom',
   },
 } as const;
 
