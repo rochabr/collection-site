@@ -18,7 +18,23 @@ const join = (path: string) => `${normalizedBase}/${path.replace(/^\//, '')}`;
 
 const catalog = new Map(works.map((w, i) => [w.id, String(i + 1).padStart(2, '0')]));
 const artistCount = new Set(works.map((w) => slugify(w.data.artist))).size;
-const featured = works.find((w) => w.id === 'carybe-baianas') ?? works[0];
+
+// Featured hero piece. The pool is every work that has an image. The server
+// renders a random one (chosen at build time) as the no-JS / crawler fallback;
+// the small client script below re-picks on every page load so it feels random
+// to visitors — necessary because this is a statically built site.
+const featuredPool = works
+  .filter((w) => w.data.images?.[0])
+  .map((w) => ({
+    href: join(`works/${w.id}/`),
+    img: join(w.data.images![0]),
+    alt: `${w.data.artist} — ${w.data.title}`,
+    cat: catalog.get(w.id)!,
+    artist: w.data.artist,
+    title: w.data.title,
+  }));
+const featured = featuredPool[Math.floor(Math.random() * featuredPool.length)];
+const featuredJson = JSON.stringify(featuredPool).replace(/</g, '\\u003c');
 
 const grouped = CHAPTERS.map((ch) => ({
   ch,
@@ -36,18 +52,36 @@ const grouped = CHAPTERS.map((ch) => ({
         <div class="stat"><span class="num">{artistCount}</span><span class="lbl">{s.artists_label}</span></div>
       </div>
     </div>
-    <a class="featured" href={join(`works/${featured.id}/`)}>
-      <div class="featured-img">
-        {featured.data.images?.[0] && (
-          <img src={join(featured.data.images[0])} alt={`${featured.data.artist} — ${featured.data.title}`} loading="lazy" />
-        )}
-      </div>
-      <div class="featured-cap">
-        <span class="cat">Nº {catalog.get(featured.id)}</span>
-        <span class="fa">{featured.data.artist}</span>
-        <span class="ft">{featured.data.title}</span>
-      </div>
-    </a>
+    {featured && (
+      <a class="featured" id="featured" href={featured.href}>
+        <div class="featured-img">
+          <img src={featured.img} alt={featured.alt} loading="lazy" />
+        </div>
+        <div class="featured-cap">
+          <span class="cat">Nº {featured.cat}</span>
+          <span class="fa">{featured.artist}</span>
+          <span class="ft">{featured.title}</span>
+        </div>
+      </a>
+    )}
+    <script type="application/json" id="featured-pool" is:inline set:html={featuredJson}></script>
+    <script is:inline>
+      (() => {
+        const data = document.getElementById('featured-pool');
+        const a = document.getElementById('featured');
+        if (!data || !a) return;
+        let pool;
+        try { pool = JSON.parse(data.textContent || '[]'); } catch (e) { return; }
+        if (!Array.isArray(pool) || pool.length < 2) return;
+        const pick = pool[Math.floor(Math.random() * pool.length)];
+        a.setAttribute('href', pick.href);
+        const img = a.querySelector('.featured-img img');
+        if (img) { img.setAttribute('src', pick.img); img.setAttribute('alt', pick.alt); }
+        const cat = a.querySelector('.cat'); if (cat) cat.textContent = 'Nº ' + pick.cat;
+        const fa = a.querySelector('.fa'); if (fa) fa.textContent = pick.artist;
+        const ft = a.querySelector('.ft'); if (ft) ft.textContent = pick.title;
+      })();
+    </script>
   </section>
 
   {grouped.map(({ ch, items }) => (
