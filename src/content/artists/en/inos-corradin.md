@@ -5,6 +5,8 @@ died: "2025"
 birthplace: "Vogogna, Italy"
 nationality: "Italian-Brazilian"
 movement: "Modernism — figuration; painter, sculptor and set designer based in São Paulo from 1950"
+portrait: "inos-corradin.jpg"
+portrait_credit: "Galeria Victor Hugo (divulgação)"
 sources:
   - title: "Inos Corradin — official site"
     url: "https://www.inoscorradin.com.br"
