@@ -5,6 +5,8 @@ died: "1982"
 birthplace: "Hiroshima, Japan"
 nationality: "Japanese-Brazilian"
 movement: "Japanese-Brazilian modern figuration / Grupo Seibi"
+portrait: "tadashi-kaminagai.png"
+portrait_credit: "Arquivo Nacional — consular qualification form, 25 January 1941 — public domain via Wikimedia Commons"
 sources:
   - title: "Tadashi Kaminagai — Guia das Artes"
     url: "https://www.guiadasartes.com.br/tadashi-kaminagai"
