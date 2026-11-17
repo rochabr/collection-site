@@ -4,7 +4,11 @@ born: "1914"
 died: "2000"
 birthplace: "Rio de Janeiro, RJ"
 movement: "Arte naïf / Figuração popular"
+portrait: rosina-becker-do-valle.jpg
+portrait_credit: "Fonte: Guia das Artes; fotógrafo não identificado"
 sources:
+  - title: "Rosina Becker do Vale — Guia das Artes"
+    url: "https://www.guiadasartes.com.br/rosina-becker-do-vale"
   - title: "Rosina Becker do Valle — MASP"
     url: "https://masp.org.br/acervo/obra/indio-na-floresta-caboclo"
 ---
