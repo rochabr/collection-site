@@ -123,6 +123,8 @@ export const ARTIST_GROUP: Record<string, ChapterKey> = {
   'waldomiro-de-deus': 'contemporaneos',
   'denilson-baniwa': 'contemporaneos',
   'roxinha': 'contemporaneos',
+  'eila-ampula': 'contemporaneos',
+  'rosina-becker-do-valle': 'contemporaneos',
 };
 
 // Falls back to 'modernos' for any artist not explicitly mapped.
