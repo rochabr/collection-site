@@ -4,7 +4,11 @@ born: "1916"
 died: "2008"
 birthplace: "Tampere, Finland"
 movement: "Tapestry / Naïve figuration"
+portrait: eila-ampula.jpg
+portrait_credit: "Source: Arremate Arte; photographer unidentified"
 sources:
+  - title: "Eila Ampula — Arremate Arte"
+    url: "https://www.arrematearte.com.br/artistas/eila-ampula-1916"
   - title: "220 Histórias da Cultura de Resende — Fundação Casa da Cultura Macedo Miranda"
     url: "https://resende.rj.gov.br/conteudo/downloads/Livro-220-Artistas-de-Resende.pdf"
   - title: "Exposição tapeçaria: Eila — Museu de Arte da UFC, 1970"
